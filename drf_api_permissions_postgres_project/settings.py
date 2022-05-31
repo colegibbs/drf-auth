@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     # local
     'books',
     # third part django REST framework
-    'rest-framework',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
