@@ -21,6 +21,9 @@ class BookTests(APITestCase):
         )
         test_book.save()
 
+    def setUp(self):
+        self.client.login(username="testuser1", password="pass")
+
     def test_books_model(self):
         books = book.objects.get(id=1)
         actual_owner = str(books.owner)
@@ -69,11 +72,11 @@ class BookTests(APITestCase):
         }
         response = self.client.put(url, data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        book = book.objects.get(id=1)
-        self.assertEqual(book.name, data["name"])
-        self.assertEqual(book.owner.id, data["owner"])
-        self.assertEqual(book.publication_date, data["publication_date"])
-        self.assertEqual(book.description, data["description"])
+        books = book.objects.get(id=1)
+        self.assertEqual(books.name, data["name"])
+        self.assertEqual(books.owner.id, data["owner"])
+        self.assertEqual(str(books.publication_date), data["publication_date"])
+        self.assertEqual(books.description, data["description"])
 
     def test_delete_thing(self):
         url = reverse("book_detail", args=(1,))
