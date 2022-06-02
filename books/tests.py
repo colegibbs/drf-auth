@@ -85,3 +85,8 @@ class BookTests(APITestCase):
         books = book.objects.all()
         self.assertEqual(len(books), 0)
 
+    def test_authentication_required(self):
+        self.client.logout()
+        url = reverse("book_detail", args=(1,))
+        response = self.client.post(url)
+        self.assertEqual(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
