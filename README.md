@@ -32,3 +32,12 @@ I don't have any tests to note.
 Describe any tests that you did not complete, skipped, etc
 
 All test passing.
+
+## Routes
+
+For token path, username and password go under Form-encode. For the refresh path the token goes in the Form-encode.
+
+1. `http://0.0.0.0:8000/api/token/refresh`
+2. `http://0.0.0.0:8000/api/token/`
+3. `http://0.0.0.0:8000/api/v1/books/`
+4. `http://0.0.0.0:8000/api/v1/books/1/`
